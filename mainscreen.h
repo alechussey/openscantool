@@ -16,32 +16,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "mainwindow.h"
+#ifndef MAINSCREEN_H
+#define MAINSCREEN_H
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+#include <QtGui>
+
+class MainScreen : public QWidget
 {
-	// initialize all screens
-	main = new MainScreen(this);
+    Q_OBJECT
+
+public:
+    explicit MainScreen(QWidget *parent = 0);
+
+private:
+	QPushButton *dashButton;
+	QPushButton *tripButton;
+	QPushButton *diagButton;
+	QPushButton *logButton;
 	
-	// setup main window itself
-	setWindowTitle("OpenScanTool");
-	setMinimumSize(800, 600);
-	
-	// set default screen as central widget
-	setCentralWidget(main);
-}
+	QGridLayout *mainLayout;
+};
 
-MainWindow::~MainWindow()
-{
-}
-
-void MainWindow::setupActions()
-{
-	//
-}
-
-void MainWindow::setupMenus()
-{
-	//
-}
+#endif // MAINSCREEN_H

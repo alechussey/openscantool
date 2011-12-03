@@ -11,6 +11,10 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    mainscreen.cpp \
+    dashboard.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    mainscreen.h \
+    dashboard.h

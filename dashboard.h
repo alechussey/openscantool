@@ -16,32 +16,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "mainwindow.h"
+#ifndef DASHBOARD_H
+#define DASHBOARD_H
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-{
-	// initialize all screens
-	main = new MainScreen(this);
-	
-	// setup main window itself
-	setWindowTitle("OpenScanTool");
-	setMinimumSize(800, 600);
-	
-	// set default screen as central widget
-	setCentralWidget(main);
-}
+#include <QWidget>
 
-MainWindow::~MainWindow()
+class Dashboard : public QWidget
 {
-}
+    Q_OBJECT
+public:
+    explicit Dashboard(QWidget *parent = 0);
 
-void MainWindow::setupActions()
-{
-	//
-}
+signals:
 
-void MainWindow::setupMenus()
-{
-	//
-}
+public slots:
+
+};
+
+#endif // DASHBOARD_H

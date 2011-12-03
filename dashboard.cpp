@@ -16,32 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "mainwindow.h"
+#include "dashboard.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+Dashboard::Dashboard(QWidget *parent) :
+    QWidget(parent)
 {
-	// initialize all screens
-	main = new MainScreen(this);
-	
-	// setup main window itself
-	setWindowTitle("OpenScanTool");
-	setMinimumSize(800, 600);
-	
-	// set default screen as central widget
-	setCentralWidget(main);
-}
-
-MainWindow::~MainWindow()
-{
-}
-
-void MainWindow::setupActions()
-{
-	//
-}
-
-void MainWindow::setupMenus()
-{
-	//
 }
