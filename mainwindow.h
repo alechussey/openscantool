@@ -31,9 +31,13 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+	void dashboard(void);
+
 private:
 	// widgets
 	MainScreen *main;
+	Dashboard *dash;
 	
 	// actions
 	QAction *connectAction;

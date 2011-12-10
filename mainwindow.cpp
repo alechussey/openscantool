@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
 	// initialize all screens
 	main = new MainScreen(this);
+	connect(main, SIGNAL(dashTriggered()), this, SLOT(dashboard()));
 	
 	// setup main window itself
 	setWindowTitle("OpenScanTool");
@@ -44,4 +45,10 @@ void MainWindow::setupActions()
 void MainWindow::setupMenus()
 {
 	//
+}
+
+void MainWindow::dashboard()
+{
+	dash = new Dashboard(this);
+	setCentralWidget(dash);
 }

@@ -27,15 +27,22 @@ MainScreen::MainScreen(QWidget *parent) :
 	// create the four big buttons for each task you can perform
 	dashButton = new QPushButton(tr("Dashboard"));
 	dashButton->setMinimumSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+	connect(dashButton, SIGNAL(clicked()), this, SLOT(triggerDash()));
 	
 	tripButton = new QPushButton(tr("Trip Computer"));
+	tripButton->setEnabled(false);
 	tripButton->setMinimumSize(BUTTON_WIDTH, BUTTON_HEIGHT);
-	
+	connect(tripButton, SIGNAL(clicked()), this, SLOT(triggerTrip()));
+		
 	diagButton = new QPushButton(tr("Diagnostics"));
+	diagButton->setEnabled(false);
 	diagButton->setMinimumSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+	connect(diagButton, SIGNAL(clicked()), this, SLOT(triggerDiag()));
 	
-	logButton = new QPushButton(tr("Logging"));
-	logButton->setMinimumSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+	logsButton = new QPushButton(tr("Logging"));
+	logsButton->setEnabled(false);
+	logsButton->setMinimumSize(BUTTON_WIDTH, BUTTON_HEIGHT);
+	connect(logsButton, SIGNAL(clicked()), this, SLOT(triggerLogs()));
 	
 	// create grid layout for buttons
 	mainLayout = new QGridLayout();
@@ -44,8 +51,28 @@ MainScreen::MainScreen(QWidget *parent) :
 	mainLayout->addWidget(dashButton, 0, 0);
 	mainLayout->addWidget(tripButton, 0, 1);
 	mainLayout->addWidget(diagButton, 1, 0);
-	mainLayout->addWidget(logButton, 1, 1);
+	mainLayout->addWidget(logsButton, 1, 1);
 	
 	// set this widgets layout as our button grid layout
 	setLayout(mainLayout);
+}
+
+void MainScreen::triggerDash()
+{
+	emit dashTriggered();
+}
+
+void MainScreen::triggerTrip()
+{
+	emit tripTriggered();
+}
+
+void MainScreen::triggerDiag()
+{
+	emit diagTriggered();
+}
+
+void MainScreen::triggerLogs()
+{
+	emit logsTriggered();
 }

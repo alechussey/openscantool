@@ -21,4 +21,9 @@
 Dashboard::Dashboard(QWidget *parent) :
     QWidget(parent)
 {
+	speedo = new Speedometer();
+	
+	mainLayout = new QGridLayout();
+	mainLayout->addWidget(speedo, 0, 0);
+	setLayout(mainLayout);
 }

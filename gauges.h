@@ -16,37 +16,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef MAINSCREEN_H
-#define MAINSCREEN_H
+#ifndef GAUGES_H
+#define GAUGES_H
 
 #include <QtGui>
+#include <qwt_dial.h>
+#include <qwt_dial_needle.h>
 
-class MainScreen : public QWidget
+class BaseGauge : public QwtDial
 {
-    Q_OBJECT
-
 public:
-    explicit MainScreen(QWidget *parent = 0);
+	explicit BaseGauge(QWidget *parent = 0);
+	
+	void setLabel(const QString &label);
+	QString label(void) const;
 
-signals:
-	void dashTriggered(void);
-	void tripTriggered(void);
-	void diagTriggered(void);
-	void logsTriggered(void);
-
-private slots:
-	void triggerDash(void);
-	void triggerTrip(void);
-	void triggerDiag(void);
-	void triggerLogs(void);
+protected:
+	virtual void drawScaleContents(QPainter *painter, const QPointF &center, double radius) const;
 
 private:
-	QPushButton *dashButton;
-	QPushButton *tripButton;
-	QPushButton *diagButton;
-	QPushButton *logsButton;
-	
-	QGridLayout *mainLayout;
+	QString m_label;
+	QwtDialSimpleNeedle *needle;
 };
 
-#endif // MAINSCREEN_H
+class Speedometer : public BaseGauge
+{
+public:
+	explicit Speedometer(QWidget *parent = 0);
+};
+
+#endif // GAUGES_H

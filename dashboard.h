@@ -19,18 +19,19 @@
 #ifndef DASHBOARD_H
 #define DASHBOARD_H
 
-#include <QWidget>
+#include <QtGui>
+#include "gauges.h"
 
 class Dashboard : public QWidget
 {
     Q_OBJECT
+
 public:
     explicit Dashboard(QWidget *parent = 0);
 
-signals:
-
-public slots:
-
+private:
+	Speedometer *speedo;
+	QGridLayout *mainLayout;
 };
 
 #endif // DASHBOARD_H
