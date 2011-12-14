@@ -25,8 +25,11 @@ BaseGauge::BaseGauge(QWidget *parent) : QwtDial(parent)
 	// setup parameters used by most gauges
 	setScaleComponents(QwtAbstractScaleDraw::Ticks | QwtAbstractScaleDraw::Labels);
 	setScaleTicks(0, 8, 16);
+	setScaleArc(0.0, 215.0);
+	scaleDraw()->setSpacing(8);
 	setWrapping(false);
 	setReadOnly(true);
+	setOrigin(160.0);
 	
 	// setup basic needle
 	needle = new QwtDialSimpleNeedle(QwtDialSimpleNeedle::Arrow, true, Qt::red, Qt::gray);
@@ -59,10 +62,16 @@ void BaseGauge::drawScaleContents(QPainter *painter, const QPointF &center, doub
 Speedometer::Speedometer(QWidget *parent) : BaseGauge(parent)
 {
 	// setup parameters for a basic speedometer
-	setOrigin(160.0);
 	setRange(0, 160);
 	setScale(-1, 2, 10);
-	setScaleArc(0.0, 215.0);
-	scaleDraw()->setSpacing(8);
 	setLabel("MPH");
+}
+
+
+Tachometer::Tachometer(QWidget *parent) : BaseGauge(parent)
+{
+	// setup parameters for a basic tachometer
+	setRange(0, 10000);
+	setScale(-1, 2, 1000.0);
+	setLabel("RPM\nx1000");
 }

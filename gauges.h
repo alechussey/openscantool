@@ -39,10 +39,18 @@ private:
 	QwtDialSimpleNeedle *needle;
 };
 
+
 class Speedometer : public BaseGauge
 {
 public:
 	explicit Speedometer(QWidget *parent = 0);
+};
+
+
+class Tachometer : public BaseGauge
+{
+public:
+	explicit Tachometer(QWidget *parent = 0);
 };
 
 #endif // GAUGES_H

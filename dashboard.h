@@ -31,6 +31,7 @@ public:
 
 private:
 	Speedometer *speedo;
+	Tachometer *tacho;
 	QGridLayout *mainLayout;
 };
 
