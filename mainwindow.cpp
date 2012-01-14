@@ -39,7 +39,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::setupActions()
 {
-	//
+	// file menu actions
+	connectAction = new QAction(tr("Connect to vehicle"), this);
+	connectAction->setToolTip(tr("Establish a connection to your vehicle."));
+	connectAction->setShortcut();
+	
+	openAction = new QAction(tr("Open data log"), this);
+	openAction->setToolTip(tr("Open a previously saved data log file."));
 }
 
 void MainWindow::setupMenus()
