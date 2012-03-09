@@ -1,6 +1,6 @@
 /*
  *  OpenScanTool
- *  Copyright (C) 2011  Alec Hussey
+ *  Copyright (C) 2012  Alec Hussey
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -31,6 +31,10 @@ MainWindow::MainWindow(QWidget *parent)
 	
 	// set default screen as central widget
 	setCentralWidget(main);
+	
+	// setup other misc window functionality
+	setupActions();
+	setupMenus();
 }
 
 MainWindow::~MainWindow()
@@ -42,15 +46,42 @@ void MainWindow::setupActions()
 	// file menu actions
 	connectAction = new QAction(tr("Connect to vehicle"), this);
 	connectAction->setToolTip(tr("Establish a connection to your vehicle."));
-	connectAction->setShortcut();
+	connectAction->setShortcut(tr("Ctrl+K"));
 	
 	openAction = new QAction(tr("Open data log"), this);
-	openAction->setToolTip(tr("Open a previously saved data log file."));
+	openAction->setToolTip(tr("Open a previously saved data log file for viewing."));
+	openAction->setShortcut(QKeySequence::Open);
+	
+	quitAction = new QAction(tr("Quit"), this);
+	quitAction->setShortcut(QKeySequence::Quit);
+	connect(quitAction, SIGNAL(triggered()), this, SLOT(close()));
+	
+	// edit menu actions
+	prefsAction = new QAction(tr("&Preferences"), this);
+	prefsAction->setToolTip(tr("Modify application settings."));
+	prefsAction->setShortcut(tr("Ctrl+P"));
+	
+	// help menu actions
+	aboutAction = new QAction(tr("&About"), this);
+	aboutAction->setToolTip(tr("About this application."));
 }
 
 void MainWindow::setupMenus()
 {
-	//
+	// setup file menu
+	fileMenu = menuBar()->addMenu(tr("&File"));
+	fileMenu->addAction(connectAction);
+	fileMenu->addAction(openAction);
+	fileMenu->addSeparator();
+	fileMenu->addAction(quitAction);
+	
+	// setup edit menu
+	editMenu = menuBar()->addMenu(tr("&Edit"));
+	editMenu->addAction(prefsAction);
+	
+	// setup help menu
+	helpMenu = menuBar()->addMenu(tr("&Help"));
+	helpMenu->addAction(aboutAction);
 }
 
 void MainWindow::dashboard()
