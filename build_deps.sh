@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$1" == "qextserialport" ]; then
-    cd deps/qextserialport
+if [ "$1" == "libobd" ]; then
+	cd deps/libobd
     qmake
     make
     cd ../..

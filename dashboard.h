@@ -20,6 +20,7 @@
 #define DASHBOARD_H
 
 #include <QtGui>
+#include <ObdThread.h>
 #include "gauges.h"
 
 class Dashboard : public QWidget
@@ -29,7 +30,11 @@ class Dashboard : public QWidget
 public:
     explicit Dashboard(QWidget *parent = 0);
 
+protected slots:
+	void response(QString pid, QString val, int set, double time); 
+
 private:
+	ObdThread *obd;
 	Speedometer *speedo;
 	Tachometer *tacho;
 	QGridLayout *mainLayout;

@@ -21,6 +21,16 @@
 Dashboard::Dashboard(QWidget *parent) :
     QWidget(parent)
 {
+	obd = new ObdThread();
+	connect(obd, SIGNAL(pidReply(QString,QString,int,double)), 
+			this, SLOT(response(QString,QString,int,double)));
+	obd->start();
+	obd->setPort("/dev/pts/2");
+	obd->setBaud(9600);
+	obd->addRequest(0x01, 0x0c, 1, 0);
+	obd->addRequest(0x01, 0x0d, 1, 0);
+	obd->addRequest(0x01, 0x11, 1, 0);
+	
 	speedo = new Speedometer();
 	tacho = new Tachometer();
 	
@@ -28,4 +38,10 @@ Dashboard::Dashboard(QWidget *parent) :
 	mainLayout->addWidget(speedo, 0, 0);
 	mainLayout->addWidget(tacho, 0, 1);
 	setLayout(mainLayout);
+}
+
+void Dashboard::response(QString pid, QString val, int set, double time)
+{
+	qDebug() << "Called Dashboard::response()";
+	qDebug() << pid << val << set << time;
 }

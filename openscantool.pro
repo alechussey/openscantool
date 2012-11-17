@@ -10,23 +10,23 @@ TEMPLATE = app
 CONFIG += link_prl
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    mainscreen.cpp \
-    dashboard.cpp \
-    gauges.cpp
+		   mainwindow.cpp \
+		   mainscreen.cpp \
+		   dashboard.cpp \
+		   gauges.cpp
 
 HEADERS  += mainwindow.h \
-    mainscreen.h \
-    dashboard.h \
-    gauges.h
+			mainscreen.h \
+			dashboard.h \
+			gauges.h
 
 OTHER_FILES += build_deps.sh
 
-qextserialport.target = qextserialport
-qextserialport.commands = ./build_deps.sh qextserialport
+libobd.target = libobd
+libobd.commands = ./build_deps.sh libobd
 
-LIBS += -Ldeps/qextserialport -lqextserialport -lqwt
-INCLUDEPATH += /usr/include/qwt deps/qextserialport
-DEPENDPATH += deps/qextserialport
-QMAKE_EXTRA_TARGETS += qextserialport
-PRE_TARGETDEPS += qextserialport
+LIBS += -Ldeps/libobd -lobd -lqwt
+INCLUDEPATH += /usr/include/qwt deps/libobd
+DEPENDPATH += deps/libobd
+QMAKE_EXTRA_TARGETS += libobd
+PRE_TARGETDEPS += libobd

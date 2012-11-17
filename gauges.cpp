@@ -58,7 +58,6 @@ void BaseGauge::drawScaleContents(QPainter *painter, const QPointF &center, doub
 	painter->drawText(rect, Qt::AlignBottom | Qt::AlignHCenter, m_label);
 }
 
-
 Speedometer::Speedometer(QWidget *parent) : BaseGauge(parent)
 {
 	// setup parameters for a basic speedometer
@@ -66,7 +65,6 @@ Speedometer::Speedometer(QWidget *parent) : BaseGauge(parent)
 	setScale(-1, 2, 10);
 	setLabel("MPH");
 }
-
 
 Tachometer::Tachometer(QWidget *parent) : BaseGauge(parent)
 {
